@@ -38,11 +38,34 @@ CreateCustomer("Deepa", "Check", 89);
 //Rest Parameter- Always in the last
 function FetchBooks()
 {
-    let Books = [{ id : 1, name : "The Alchemist", Author : "Paulo Coelho", available : true},
-    { id : 2, name : "Many Lives Many Masters", Author : "Brain Weiss", available : false},
-    { id : 3, name : "Vistas", Author : "Deepa Prakash", available : false}];
+    let Books = [
+        {
+            id : 1, 
+            name : "The Alchemist", 
+            Author : "Paulo Coelho", 
+            available : true
+        },
+        { 
+            id : 2, 
+            name : "Many Lives Many Masters", 
+            Author : "Brain Weiss", 
+            available : false
+        },
+        { 
+            id : 3, 
+            name : "Vistas", 
+            Author : "Deepa Prakash", 
+            available : false
+        }
+    ];
 
     return Books;
+}
+
+function FindBookById(id : number) {
+    let books = FetchBooks();
+
+    return books.filter(item => item.id === id);
 }
 
 function GetBookDetails(name : string, ...bookIds:number[]): Array<string>
@@ -52,6 +75,9 @@ function GetBookDetails(name : string, ...bookIds:number[]): Array<string>
 
     for(let book of bookIds)
     {
-        
+        const BookDetailsId = FindBookById(book);
+        if(BookDetailsId.)
     }
+
+    return bookStore;
 }
