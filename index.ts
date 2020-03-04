@@ -49,13 +49,13 @@ function FetchBooks()
             id : 2, 
             name : "Many Lives Many Masters", 
             Author : "Brain Weiss", 
-            available : false
+            available : true
         },
         { 
             id : 3, 
             name : "Vistas", 
             Author : "Deepa Prakash", 
-            available : false
+            available : true
         }
     ];
 
@@ -65,7 +65,7 @@ function FetchBooks()
 function FindBookById(id : number) {
     let books = FetchBooks();
 
-    return books.filter(item => item.id === id);
+    return books.filter(item => item.id === id)[0];  //if we give indexing here, it will give only one value, not object
 }
 
 function GetBookDetails(name : string, ...bookIds:number[]): Array<string>
@@ -76,8 +76,56 @@ function GetBookDetails(name : string, ...bookIds:number[]): Array<string>
     for(let book of bookIds)
     {
         const BookDetailsId = FindBookById(book);
-        if(BookDetailsId.)
+        if(BookDetailsId.available)
+        {
+            bookStore.push(BookDetailsId.Author, BookDetailsId.name);
+        }
     }
-
+    console.log(bookStore);
     return bookStore;
 }
+
+GetBookDetails("Deepa", 2, 2);
+
+console.log("--------------------------------------------------------------");
+
+function GetTitle(bookName : string) : Array<string>; //Throws error- Function implementation is missing.
+function GetTitle(bookName : boolean) : Array<string>;
+
+function GetTitle(bookName : any) : Array<string>{
+    let storeBook : string[] = [];
+    let items = FetchBooks();
+
+    if(typeof bookName === "boolean")
+    {
+        for(let i of items)
+        {
+            if(i.available)
+            {
+                storeBook.push(i.Author);
+                break;
+            }
+        }
+    }
+    else if(typeof bookName === "string")
+    {
+        for(let h of items)
+        {
+            if(h.available)
+            {
+                storeBook.push(h.name);
+                break;
+            }
+        }
+    }
+    else
+    {
+        console.log("not such item present");
+    }
+
+    console.log(storeBook);
+    return storeBook;
+}
+
+GetTitle(true);
+GetTitle("Deepa");
